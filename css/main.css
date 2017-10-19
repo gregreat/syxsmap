@@ -1,0 +1,14 @@
+html,
+body,
+#mainMap {
+    height: 100%;
+    margin: 0;
+}
+.marker {
+    color: #ff6600;
+    padding: 4px 10px;
+    border: 1px solid #fff;
+    white-space: nowrap;
+    font-size: 12px;
+    background-color: #0066ff;
+}
