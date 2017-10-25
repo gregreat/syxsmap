@@ -5,7 +5,15 @@
 	</head>
 	<body>
 		<script type="text/javascript">
-			var otime = new Date();
+            var date = new Date(),
+            Y = date.getFullYear(),
+            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1),
+            D = date.getDate(),
+            h = date.getHours(),
+            m = date.getMinutes(),
+            s = date.getSeconds(); 
+            var otime = Y+''+M+''+D+''+h+''+m+''+s;
+
 			var locationData = {t: otime, lng:123, lat:45};
 			setInterval(function(){
                 console.log(locationData);
