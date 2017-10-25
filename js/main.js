@@ -58,22 +58,4 @@
     function onError(data) {
         document.getElementById('tip').innerHTML = '定位失败';
     }
-    //从手机端获取经过偏移的gps数据
-    var lineArr = [
-        [116.37, 39.91],
-        [116.38, 39.90],
-        [116.39, 39.91],
-        [116.40, 39.90],
-        [120.99, 24.78]
-    ];
-    var polyline = new AMap.Polyline({
-        path: lineArr,          //设置线覆盖物路径
-        strokeColor: "#3366FF", //线颜色
-        strokeOpacity: 1,       //线透明度
-        strokeWeight: 5,        //线宽
-        strokeStyle: "solid",   //线样式
-        strokeDasharray: [10, 5] //补充线样式
-    });
-    polyline.setMap(map);
-
 })();
