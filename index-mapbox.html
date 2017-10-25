@@ -8,13 +8,25 @@
 </head>
 <body>
 <div id='map' style='width: 400px; height: 300px;'></div>
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoieWVwaW05NSIsImEiOiJjajh5ZjV3emEyZTd3MzRtcmo3eG02OWVoIn0.7ekkei97D7lMoelLT_cntQ';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v9'
-    });
-</script>
+<!--<script>-->
+    <!--mapboxgl.accessToken = 'pk.eyJ1IjoieWVwaW05NSIsImEiOiJjajh5ZjV3emEyZTd3MzRtcmo3eG02OWVoIn0.7ekkei97D7lMoelLT_cntQ';-->
+    <!--var map = new mapboxgl.Map({-->
+        <!--container: 'map',-->
+        <!--style: 'mapbox://styles/mapbox/dark-v9'-->
+    <!--});-->
+<!--</script>-->
 
+<script>
+    (function () {
+        console.log('ready');
+
+        var ws = new WebSocket('ws://localhost:8080/');
+        ws.onmessage = function (event) {
+            console.log('Count is:' + event.data);
+
+        }
+    }());
+
+</script>
 </body>
 </html>

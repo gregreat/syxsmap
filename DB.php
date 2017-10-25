@@ -1,10 +1,9 @@
 <?php
-	$otime = $_POST['t'];
-	$lng = $_POST['lng'];
-	$lat = $_POST['lat'];
-echo $otime;
-echo $lng;
-echo $lat;
+
+	$odata['t'] = $_POST['t'];
+	$odata['lng'] = $_POST['lng'];
+	$odata['lat'] = $_POST['lat'];
+echo $odata;
 //$myfile = fopen("location.json", "a") or die("Unable to open file!");
 //fwrite($myfile, $loca);
 //fclose($myfile);
