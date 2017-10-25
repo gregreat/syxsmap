@@ -18,8 +18,10 @@
         AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
     });
     //解析定位结果
+    /*
     function onComplete(data) {
-        var str=['定位成功'];
+        console.log('complete !');
+        var str=['定位成功aaa'];
         str.push('经度：' + data.position.getLng());
         str.push('纬度：' + data.position.getLat());
         if(data.accuracy){
@@ -27,10 +29,49 @@
         }//如为IP精确定位结果则没有精度信息
         str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
         document.getElementById('tip').innerHTML = str.join('<br>');
-    }
+        var currentTime = new Date();
+        var locationData = {
+            t : currentTime,
+            lng : data.position.getLng(), 
+            lat : data.position.getLat()
+        }
+        console.log('complete + ' + locationData);
+        // setInterval(function(){
+        //     console.log('interval + 'locationData);
+        //     $.ajax({
+        //         url : 'DB.php',
+        //         type : 'POST',
+        //         data : locationData,
+        //         success : function () {
+        //             console.log('post success');
+        //         },
+        //         error : function () {
+        //             console.log('error');
+        //         }
+        //     });
+        // }, 500)
+
+    }*/
     //解析定位错误信息
     function onError(data) {
         document.getElementById('tip').innerHTML = '定位失败';
     }
+    //从手机端获取经过偏移的gps数据
+    var lineArr = [
+        [116.37, 39.91],
+        [116.38, 39.90],
+        [116.39, 39.91],
+        [116.40, 39.90],
+        [120.99, 24.78]
+    ];
+    var polyline = new AMap.Polyline({
+        path: lineArr,          //设置线覆盖物路径
+        strokeColor: "#3366FF", //线颜色
+        strokeOpacity: 1,       //线透明度
+        strokeWeight: 5,        //线宽
+        strokeStyle: "solid",   //线样式
+        strokeDasharray: [10, 5] //补充线样式
+    });
+    polyline.setMap(map);
 
 })();

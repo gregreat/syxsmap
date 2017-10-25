@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var otime = new Date();
+			var locationData = {t: otime, lng:123, lat:45};
+			setInterval(function(){
+                console.log(locationData);
+            $.ajax({
+                url : 'DB.php',
+                type : 'POST',
+                data : locationData,
+                success : function () {
+                    console.log('post success');
+                },
+                error : function () {
+                    console.log('error');
+                }
+            });
+        }, 5000)
+		</script>
+	</body>
+</html>
