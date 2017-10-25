@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>Where are you - Admin End </title>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=e3a27472e5e3870ac889bc0563bef763"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<style type="text/css">
+
+</style>
+<body>
+<div id="mainMap"></div>
+<div id="tip"></div>
+<script type="text/javascript">
+
+    var loca = [],
+        lineArr = [[123,45]];
+    //加载地图
+    var map = new AMap.Map('mainMap', {
+        resizeEnable: true,
+        zoom:11,
+        center: [116,39]
+    });
+    //设置路径样式
+    var polyline = new AMap.Polyline({
+        path: lineArr,          //设置线覆盖物路径
+        strokeColor: "#3366FF", //线颜色
+        strokeOpacity: 1,       //线透明度
+        strokeWeight: 5,        //线宽
+        strokeStyle: "solid",   //线样式
+        strokeDasharray: [10, 5] //补充线样式
+    });
+    var marker = new AMap.Marker({
+        map: map,
+        position: lineArr[lineArr.length-1],
+        autoRotation: true
+    });
+    //@TODO: 当文件变动时触发函数读取数据
+    //从文件读取经过偏移的gps数据
+    setInterval(function(){
+        $.ajax({
+            url : 'read.php',
+            type : 'POST',
+            success : function (data) {
+                var a = data.split('&'),
+                    b1 = a[1].split('='),
+                    b2 = a[2].split('=');
+                loca = [b1[1],b2[1]];
+                lineArr.push(loca);
+                //绘制路径
+                polyline.setMap(map);
+                marker.setPosition(lineArr[lineArr.length-1]);
+                console.log(lineArr);
+            },
+            error : function () {
+                console.log('read file fail!!');
+            }
+        });
+    },5000);
+
+
+
+
+
+</script>
+
+</body>
+</html>

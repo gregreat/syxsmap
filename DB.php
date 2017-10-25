@@ -6,10 +6,13 @@
 // $loca = '{t:'.$odata['t'].',lng:'.$odata['lng'].',lat:'.$odata['lat'].'}'."\r";
 // echo $odata['t'].' '.$odata['lng'].' '.$odata['lat'];
 // echo $loca;
-$json = file_get_contents('php://input')."\n\r";
-echo $json;
+#Get data from html
+$json = file_get_contents('php://input')."\n";
+#echo $json;
 
+#Write data to local file as simple database
 $myfile = fopen("location.json", "a") or die("Unable to open file!");
 fwrite($myfile, $json);
 fclose($myfile);
+
 ?>

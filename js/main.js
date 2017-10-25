@@ -18,10 +18,10 @@
         AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
     });
     //解析定位结果
-    /*
+
     function onComplete(data) {
         console.log('complete !');
-        var str=['定位成功aaa'];
+        var str=['定位成功User'];
         str.push('经度：' + data.position.getLng());
         str.push('纬度：' + data.position.getLat());
         if(data.accuracy){
@@ -29,29 +29,31 @@
         }//如为IP精确定位结果则没有精度信息
         str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
         document.getElementById('tip').innerHTML = str.join('<br>');
-        var currentTime = new Date();
-        var locationData = {
-            t : currentTime,
-            lng : data.position.getLng(), 
-            lat : data.position.getLat()
-        }
-        console.log('complete + ' + locationData);
-        // setInterval(function(){
-        //     console.log('interval + 'locationData);
-        //     $.ajax({
-        //         url : 'DB.php',
-        //         type : 'POST',
-        //         data : locationData,
-        //         success : function () {
-        //             console.log('post success');
-        //         },
-        //         error : function () {
-        //             console.log('error');
-        //         }
-        //     });
-        // }, 500)
+        var oDate = new Date(),
+            Y = oDate.getFullYear(),
+            M = (oDate.getMonth()+1 < 10 ? '0'+(oDate.getMonth()+1) : oDate.getMonth()+1),
+            D = oDate.getDate(),
+            h = oDate.getHours(),
+            m = oDate.getMinutes(),
+            s = oDate.getSeconds();
+        var oTime = Y+''+M+''+D+''+h+''+m+''+s;
+        var locationData = {t: oTime, lng:data.position.getLng(), lat:data.position.getLat()};
+        setInterval(function(){
+            //console.log(locationData);
+            $.ajax({
+                url : 'DB.php',
+                type : 'POST',
+                data : locationData,
+                success : function () {
+                    console.log('post success');
+                },
+                error : function () {
+                    console.log('error');
+                }
+            });
+        }, 5000);
 
-    }*/
+    }
     //解析定位错误信息
     function onError(data) {
         document.getElementById('tip').innerHTML = '定位失败';

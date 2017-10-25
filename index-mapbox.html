@@ -18,13 +18,19 @@
 
 <script>
     (function () {
-        console.log('ready');
-
-        var ws = new WebSocket('ws://localhost:8080/');
-        ws.onmessage = function (event) {
-            console.log('Count is:' + event.data);
-
-        }
+//        console.log('ready');
+//
+//        var ws = new WebSocket('ws://localhost:8080/');
+//        ws.onmessage = function (event) {
+//            console.log('Count is:' + event.data);
+//
+//        }
+        var n = 't=2017102601252&lng=120.99906&lat=24.78197',
+        a = n.split('&'),
+        b1 = a[1].split('='),
+        b2 = a[2].split('='),
+        loca = [b1[1],b2[1]];
+        console.log(loca = [b1[1],b2[1]])
     }());
 
 </script>
