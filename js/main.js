@@ -18,7 +18,6 @@
         AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
     });
     //解析定位结果
-
     function onComplete(data) {
         console.log('complete !');
         var str=['定位成功User'];
